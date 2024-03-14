@@ -1,0 +1,45 @@
+name: CI/CD
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+env:
+  SERVICENOW_INSTANCE_URL: https://dev148429.service-now.com
+
+jobs:
+  test:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup NodeJS
+        uses: actions/setup-node@v3.6.0
+        with:
+          node-version-file: 'package.json'
+      - name: Install dependencies
+        run: npm install
+      - name: Run tests
+        run: npm run test
+
+  deploy:
+    needs: [test]
+    runs-on: ubuntu-22.04
+    env:
+      SERVICENOW_USERNAME: ${{ secrets.SERVICENOW_USERNAME }}
+      SERVICENOW_PASSWORD: ${{ secrets.SERVICENOW_PASSWORD }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup NodeJS
+        uses: actions/setup-node@v3.6.0
+        with:
+          node-version-file: 'package.json'
+      - name: Install the ServiceNow SDK
+        run: npm install -g @servicenow/sdk
+      - name: Install dependencies
+        run: npm install
+      - name: Save authentication Profile
+        run: npm run now-login
+      - name: Deploy
+        run: npm run build && npm run deploy

@@ -31,13 +31,19 @@ jobs:
       - name: Setup latest Alpine Linux
         uses: jirutka/setup-alpine@v1
       - run: apk add secret-service nodejs
+        shell: alpine.sh --root {0}
       - name: Install the ServiceNow SDK
         run: npm install -g @servicenow/sdk
+        shell: alpine.sh {0}
       - name: Install dependencies
         run: npm install
+        shell: alpine.sh {0}
       - name: Save authentication Profile
         run: npm run now-login
+        shell: alpine.sh {0}
       - name: Fetch metadata
         run: now-sdk fetch
+        shell: alpine.sh {0}
       - name: Deploy
         run: npm run build && npm run deploy
+        shell: alpine.sh {0}

@@ -28,6 +28,7 @@ jobs:
       SERVICENOW_USERNAME: ${{ secrets.SERVICENOW_USERNAME }}
       SERVICENOW_PASSWORD: ${{ secrets.SERVICENOW_PASSWORD }}
     steps:
+      - uses: actions/checkout@v4
       - run: sudo apt-get update -y && sudo apt-get install keychain
       - name: Install the ServiceNow SDK
         run: npm install -g @servicenow/sdk

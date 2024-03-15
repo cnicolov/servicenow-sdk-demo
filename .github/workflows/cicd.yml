@@ -30,7 +30,7 @@ jobs:
     steps:
       - name: Setup latest Alpine Linux
         uses: jirutka/setup-alpine@v1
-      - run: apk add secret-service nodejs
+      - run: apk update && apk add secret-service nodejs
         shell: alpine.sh --root {0}
       - name: Install the ServiceNow SDK
         run: npm install -g @servicenow/sdk

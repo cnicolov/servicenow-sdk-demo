@@ -5,9 +5,10 @@
     "license": "UNLICENSED",
     "contributors": [],
     "scripts": {
-        "build": "now-sdk build",
+        "build": "rm -rf .now target dist && tsc --build --clean && tsc --build && now-sdk build",
         "deploy": "now-sdk deploy",
-        "now-login": ".github/scripts/now_login.sh"
+        "now-login": ".github/scripts/now_login.sh",
+        "test": "jest"
     },
     "now": {
         "scope": "x_1302113_demo",
@@ -15,8 +16,15 @@
         "moduleDir": "src"
     },
     "devDependencies": {
+        "@babel/preset-env": "^7.24.0",
+        "@babel/preset-typescript": "^7.23.3",
+        "@servicenow/eslint-plugin-sdk-app-plugin": "*",
         "@servicenow/glide": "25.0.1",
+        "@types/jest": "^29.5.12",
         "eslint": "8.50.0",
-        "@servicenow/eslint-plugin-sdk-app-plugin": "*"
+        "jest": "^29.7.0"
+    },
+    "dependencies": {
+        "typescript": "^5.4.2"
     }
 }

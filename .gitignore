@@ -132,3 +132,5 @@ dist
 .metadata/
 .now/
 target/
+
+src/*.js

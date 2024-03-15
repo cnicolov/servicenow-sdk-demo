@@ -2,8 +2,7 @@ name: CI/CD
 
 on:
   push:
-    branches:
-      - main
+    branches: ["*"]
   workflow_dispatch:
 
 env:
@@ -23,6 +22,7 @@ jobs:
 
   deploy:
     needs: [test]
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-22.04
     env:
       SERVICENOW_USERNAME: ${{ secrets.SERVICENOW_USERNAME }}

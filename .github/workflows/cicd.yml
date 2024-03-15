@@ -39,5 +39,7 @@ jobs:
         run: npm install
       - name: Save authentication Profile
         run: npm run now-login
+      - name: Fetch metadata
+        run: now-sdk fetch
       - name: Deploy
         run: npm run build && npm run deploy

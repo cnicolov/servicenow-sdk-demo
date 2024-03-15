@@ -1,14 +1,19 @@
-import { gs } from '@servicenow/glide'
+import { GlideRecord } from '@servicenow/glide'
 
 export const miFunction = function() {
   const miClass = new MiClass('a', 'b', 'c')
-  gs.addInfoMessage(miClass.concat())
+  const gr = new GlideRecord('incident')
+  gr.initialize()
+  gr.setValue('short_description', miClass.concat())
+  gr.insert()
 }
 
-class MiClass {
+export class MiClass {
+
   a: string
   b: string
   c: string
+
   constructor(a: string, b: string, c: string) {
     this.a = a
     this.b = b

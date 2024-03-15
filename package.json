@@ -1,6 +1,9 @@
 {
     "name": "demo",
     "version": "0.0.1",
+    "engines": {
+      "node": "v16.16.0"
+    },
     "description": "",
     "license": "UNLICENSED",
     "contributors": [],

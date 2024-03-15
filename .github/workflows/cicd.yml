@@ -28,7 +28,7 @@ jobs:
       SERVICENOW_USERNAME: ${{ secrets.SERVICENOW_USERNAME }}
       SERVICENOW_PASSWORD: ${{ secrets.SERVICENOW_PASSWORD }}
     steps:
-      - run: apt update -y && apt install -y gnome-keyring
+      - run: sudo apt-get update -y && sudo apt-get install -y gnome-keyring
       - uses: actions/checkout@v4
       - name: Setup NodeJS
         uses: actions/setup-node@v3.6.0
